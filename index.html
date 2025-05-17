@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobin Mardi | Portfolio</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="light-theme">
+    <div class="page-transition"></div>
+
+    <header>
+        <div class="container">
+            <div class="logo">.mdev</div>
+            <nav>
+                <ul>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#education" class="nav-link">Education</a></li>
+                    <li><a href="#certifications" class="nav-link">Certifications</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="theme-toggle">
+                    <button id="theme-toggle-btn" aria-label="Toggle dark mode">
+                        <span class="material-symbols-rounded" id="theme-icon">dark_mode</span>
+                    </button>
+                </div>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="mobile-menu">
+        <ul>
+            <li><a href="#about" class="mobile-nav-link">About</a></li>
+            <li><a href="#skills" class="mobile-nav-link">Skills</a></li>
+            <li><a href="#education" class="mobile-nav-link">Education</a></li>
+            <li><a href="#certifications" class="mobile-nav-link">Certifications</a></li>
+            <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <section id="hero" class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="profile-image">
+                        <div class="profile-frame"></div>
+                        <img src="img/profile.jpg" alt="Mobin Mardi" id="profile-img">
+                    </div>
+                    <div class="hero-text">
+                        <div class="hero-subtitle">Software Developer</div>
+                        <h1>mDev</h1>
+                        <p>Hello there! I'm <strong>Mobin</strong>, a 20 year-old Computer Engineering student from Iran with a passion for creating innovative solutions.</p>
+                        <div class="cta-buttons">
+                            <a href="#contact" class="btn primary-btn">Contact Me</a>
+                            <a href="#about" class="btn secondary-btn">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-bg">
+                <div class="blob blob-1"></div>
+                <div class="blob blob-2"></div>
+                <div class="blob blob-3"></div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="card about-card">
+                    <p>I'm a passionate and eager software enthusiast with a strong desire to learn about new technologies.</p>
+                    <p>For the past two years, I have gained valuable experience in Game development and Windows programming while working as a Community Manager on VALORANT at Riot Games.</p>
+                </div>
+                
+                <div class="card objective-card">
+                    <h3>Summary / Objective</h3>
+                    <p>Dedicated and motivated individual with a passion for programming and language proficiency. Seeking opportunities to leverage my skills mostly in programming (C# & Python), and language proficiency (IELTS and TOEFL) to contribute to a dynamic organization.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills-section">
+            <div class="container">
+                <h2 class="section-title">Skills</h2>
+                <div class="skills-container">
+                    <div class="card skill-card">
+                        <div class="skill-icon">
+                            <span class="material-symbols-rounded">translate</span>
+                        </div>
+                        <h3>Language Proficiency</h3>
+                        <ul>
+                            <li>IELTS - 7.5</li>
+                            <li>TOEFL - 109</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card skill-card">
+                        <div class="skill-icon">
+                            <span class="material-symbols-rounded">code</span>
+                        </div>
+                        <h3>Programming Languages</h3>
+                        <ul>
+                            <li>C# (Windows & Android)</li>
+                            <li>Python</li>
+                            <li>HTML, CSS, JS</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card skill-card">
+                        <div class="skill-icon">
+                            <span class="material-symbols-rounded">computer</span>
+                        </div>
+                        <h3>Other Skills</h3>
+                        <ul>
+                            <li>ICDL (International Computer Driving License) Certified</li>
+                            <li>Game Development</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="education-section">
+            <div class="container">
+                <h2 class="section-title">Education</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="card timeline-content">
+                            <h3>Computer Engineering</h3>
+                            <p>UCHNA, Tabriz, Iran</p>
+                            <p class="timeline-date">(Expected) Graduation Date: 2036</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="card timeline-content">
+                            <h3>High School Diploma</h3>
+                            <p>Mobin High School, Tabriz, Iran</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certifications" class="certifications-section">
+            <div class="container">
+                <h2 class="section-title">Official Certifications</h2>
+                <div class="certifications-container">
+                    <div class="card cert-card">
+                        <h3>TOEFL Certificate</h3>
+                        <p>Score: 109/120</p>
+                        <p>Issued by: Chitsazan Language Institute</p>
+                        <p>Date of Completion: 2019</p>
+                    </div>
+                    
+                    <div class="card cert-card">
+                        <h3>IELTS Certificate</h3>
+                        <p>Score: 7.5/9 C1</p>
+                        <p>Issued by: IDP Education</p>
+                        <p>Date of Completion: 2024</p>
+                    </div>
+                    
+                    <div class="card cert-card">
+                        <h3>Programming Certificate</h3>
+                        <p>C# in Windows and Android</p>
+                        <p>Issued by: MFT</p>
+                        <p>Date of Completion: 2020</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2 class="section-title">Contact Me</h2>
+                <div class="contact-container">
+                    <div class="card social-card">
+                        <h3>Connect With Me</h3>
+                        <div class="social-links">
+                            <a href="mailto:mobinmardi.uni@gmail.com" class="social-link" id="email-link" target="_blank">
+                                <span class="material-symbols-rounded">mail</span>
+                                <span>Email</span>
+                            </a>
+                            <a href="https://github.com/MobinMardi" class="social-link" target="_blank">
+                                <span class="material-symbols-rounded">code</span>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://instagram.com/riotmdev" class="social-link instagram-link" target="_blank">
+                                <span class="material-symbols-rounded">photo_camera</span>
+                                <span>Instagram</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Mobin Mardi. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
