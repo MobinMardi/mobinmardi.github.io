@@ -4,7 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>mDev</title>
+
+    <!-- ===== SEO & META ===== -->
+    <meta name="description" content="Mobin Mardi (mDev) — Community Manager at Riot Games managing 40,000+ Persian VALORANT players. Software Developer skilled in C#, Python, and game development." />
+    <meta name="robots" content="index, follow" />
+
+    <!-- ===== FAVICON ===== -->
     <link rel="icon" href="https://i.postimg.cc/5t4yKsr4/favicon-32x32.png" type="image/png">
+
+    <!-- ===== PRELOAD CRITICAL ASSETS ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="img/Profile.png" as="image">
+    <link rel="preload" href="img/bmac.png" as="image">
+
+    <!-- ===== STYLES ===== -->
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -26,6 +40,8 @@
                 <nav>
                     <ul>
                         <li><a href="#about" class="nav-link">About</a></li>
+                        <li><a href="#experience" class="nav-link">Experience</a></li>
+                        <li><a href="#projects" class="nav-link">Projects</a></li>
                         <li><a href="#skills" class="nav-link">Skills</a></li>
                         <li><a href="#education" class="nav-link">Education</a></li>
                         <li><a href="#certifications" class="nav-link">Certifications</a></li>
@@ -49,10 +65,12 @@
     <div class="mobile-menu">
         <ul>
             <li><a href="#about" class="mobile-nav-link" style="--i:0">About</a></li>
-            <li><a href="#skills" class="mobile-nav-link" style="--i:1">Skills</a></li>
-            <li><a href="#education" class="mobile-nav-link" style="--i:2">Education</a></li>
-            <li><a href="#certifications" class="mobile-nav-link" style="--i:3">Certifications</a></li>
-            <li><a href="#contact" class="mobile-nav-link" style="--i:4">Contact</a></li>
+            <li><a href="#experience" class="mobile-nav-link" style="--i:1">Experience</a></li>
+            <li><a href="#projects" class="mobile-nav-link" style="--i:2">Projects</a></li>
+            <li><a href="#skills" class="mobile-nav-link" style="--i:3">Skills</a></li>
+            <li><a href="#education" class="mobile-nav-link" style="--i:4">Education</a></li>
+            <li><a href="#certifications" class="mobile-nav-link" style="--i:5">Certifications</a></li>
+            <li><a href="#contact" class="mobile-nav-link" style="--i:6">Contact</a></li>
         </ul>
     </div>
 
@@ -63,12 +81,12 @@
                 <div class="hero-content">
                     <div class="profile-image">
                         <div class="profile-frame"></div>
-                        <img src="img/Profile.png" alt="Mobin Mardi" id="profile-img">
+                        <img src="img/Profile.png" alt="Mobin Mardi — mDev Portfolio Profile Photo" id="profile-img">
                     </div>
                     <div class="hero-text">
                         <div class="hero-subtitle">Community Manager &amp; Developer</div>
                         <h1>mDev</h1>
-                        <p>Hello there! I'm <strong>Mobin</strong>, a 21 year-old Computer Engineering student from Iran. I manage <strong>40,000+ Persian VALORANT players</strong> across 4 server regions for Riot Games.</p>
+                        <p>Hello there! I'm <strong>Mobin</strong>, a <strong><span id="age-display">21</span> year-old</strong> Computer Engineering student from Iran. I manage <strong>40,000+ Persian VALORANT players</strong> across 4 server regions for Riot Games.</p>
                         <div class="cta-buttons">
                             <a href="#contact" class="btn primary-btn">Contact Me</a>
                             <a href="#about" class="btn secondary-btn">Learn More</a>
@@ -78,20 +96,94 @@
             </div>
         </section>
 
-        <!-- ========== ABOUT ========== -->
+        <!-- ========== ABOUT / PROFILE ========== -->
         <section id="about" class="about-section">
             <div class="container">
-                <h2 class="section-title">About Me</h2>
+                <h2 class="section-title">Profile</h2>
 
                 <div class="card glass about-card">
+                    <p>Computer Engineering student with <strong>2+ years of experience</strong> managing <strong>40,000+ Persian-speaking VALORANT players</strong> for Riot Games across <strong>four international server regions</strong>. Skilled in C#, Python, and cross-cultural community leadership. Passionate about gaming, technology, and building inclusive digital spaces.</p>
+                </div>
+
+                <div class="card glass objective-card">
+                    <h3>About Me</h3>
                     <p>I'm a passionate software enthusiast and community leader with a deep love for gaming, technology, and building bridges between people.</p>
                     <p>For the past two years, I've served as a <strong>Community Manager for VALORANT at Riot Games</strong>, where I manage a community of <strong>40,000+ Persian-speaking players</strong> across <strong>four international server regions</strong> — Istanbul, Dubai, Bahrain, and Frankfurt — all while operating in a country with no official Riot Games server.</p>
                     <p>I negotiated a unique arrangement with Riot, taking on the role with a performance-based compensation structure that reflects my deep commitment to the community and the game. This experience taught me to think creatively, operate under constraints, and lead with passion.</p>
                 </div>
+            </div>
+        </section>
 
-                <div class="card glass objective-card">
-                    <h3>Objective</h3>
-                    <p>Dedicated and motivated individual with a passion for programming (C#, Python), community leadership, and cross-cultural communication. Seeking to leverage my technical skills and real-world experience in gaming ecosystems to contribute to innovative projects and dynamic organizations.</p>
+        <!-- ========== EXPERIENCE ========== -->
+        <section id="experience" class="experience-section">
+            <div class="container">
+                <h2 class="section-title">Experience</h2>
+
+                <div class="card glass experience-card">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: var(--spacing-sm); margin-bottom: var(--spacing-md);">
+                        <div>
+                            <h3 style="margin-bottom: var(--spacing-xs);">Community Manager (Remote, Persian-Speaking Region)</h3>
+                            <p style="color: var(--primary); font-weight: 600; margin-bottom: 0;">Riot Games</p>
+                        </div>
+                        <p style="font-style: italic; color: var(--on-surface-variant); margin-bottom: 0;">2022 – Present</p>
+                    </div>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: var(--spacing-sm); position: relative; padding-left: var(--spacing-lg);">
+                            <span style="position: absolute; left: 0; top: 0.5em; width: 6px; height: 6px; border-radius: 50%; background: var(--primary);"></span>
+                            Lead community engagement for <strong>40,000+ Persian-speaking VALORANT players</strong> across Iran, Afghanistan, and the global diaspora.
+                        </li>
+                        <li style="margin-bottom: var(--spacing-sm); position: relative; padding-left: var(--spacing-lg);">
+                            <span style="position: absolute; left: 0; top: 0.5em; width: 6px; height: 6px; border-radius: 50%; background: var(--primary);"></span>
+                            Coordinate across <strong>four international server regions</strong> (Istanbul, Dubai, Bahrain, Frankfurt) to ensure optimal player experience.
+                        </li>
+                        <li style="margin-bottom: var(--spacing-sm); position: relative; padding-left: var(--spacing-lg);">
+                            <span style="position: absolute; left: 0; top: 0.5em; width: 6px; height: 6px; border-radius: 50%; background: var(--primary);"></span>
+                            Negotiated a performance-based compensation structure, demonstrating deep commitment to the community and the game.
+                        </li>
+                        <li style="margin-bottom: var(--spacing-sm); position: relative; padding-left: var(--spacing-lg);">
+                            <span style="position: absolute; left: 0; top: 0.5em; width: 6px; height: 6px; border-radius: 50%; background: var(--primary);"></span>
+                            Serve as the primary bridge between Riot's global team and the Persian player base, translating technical updates and gathering localized feedback.
+                        </li>
+                        <li style="margin-bottom: var(--spacing-sm); position: relative; padding-left: var(--spacing-lg);">
+                            <span style="position: absolute; left: 0; top: 0.5em; width: 6px; height: 6px; border-radius: 50%; background: var(--primary);"></span>
+                            Operate in a country with <strong>no official Riot Games server</strong>, requiring creative problem-solving and independent infrastructure management.
+                        </li>
+                        <li style="position: relative; padding-left: var(--spacing-lg);">
+                            <span style="position: absolute; left: 0; top: 0.5em; width: 6px; height: 6px; border-radius: 50%; background: var(--primary);"></span>
+                            <strong>Approximately <span id="ticket-counter">0</span>+ player inquiries and support tickets</strong> managed across all regions since 2022.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== PROJECTS ========== -->
+        <section id="projects" class="projects-section">
+            <div class="container">
+                <h2 class="section-title">Projects</h2>
+
+                <div class="card glass project-card">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: var(--spacing-sm); margin-bottom: var(--spacing-md);">
+                        <div>
+                            <h3 style="margin-bottom: var(--spacing-xs);">Exoptimizer</h3>
+                            <p style="color: var(--primary); font-weight: 600; margin-bottom: 0;">Windows Gaming Optimization Tool</p>
+                        </div>
+                        <p style="font-style: italic; color: var(--on-surface-variant); margin-bottom: 0;">2024 – Present</p>
+                    </div>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: var(--spacing-sm); position: relative; padding-left: var(--spacing-lg);">
+                            <span style="position: absolute; left: 0; top: 0.5em; width: 6px; height: 6px; border-radius: 50%; background: var(--primary);"></span>
+                            A Windows gaming optimization tool designed to boost system performance and reduce latency.
+                        </li>
+                        <li style="margin-bottom: var(--spacing-sm); position: relative; padding-left: var(--spacing-lg);">
+                            <span style="position: absolute; left: 0; top: 0.5em; width: 6px; height: 6px; border-radius: 50%; background: var(--primary);"></span>
+                            Features real-time monitoring, process priority management, and a streamlined UI.
+                        </li>
+                        <li style="position: relative; padding-left: var(--spacing-lg);">
+                            <span style="position: absolute; left: 0; top: 0.5em; width: 6px; height: 6px; border-radius: 50%; background: var(--primary);"></span>
+                            Built with <strong>C#</strong> and .NET, demonstrating proficiency in Windows application development.
+                        </li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -135,7 +227,7 @@
                         <ul>
                             <li><strong>Community Management</strong> — 40,000+ players, 4 server regions</li>
                             <li><strong>Game Development</strong></li>
-                            <li>ICDL Certified</li>
+                            <li><strong>ICDL Certified</strong> — International Computer Driving License</li>
                             <li>Remote Team Coordination</li>
                             <li>Cross-Cultural Communication</li>
                         </ul>
@@ -156,7 +248,7 @@
                         <div class="card glass timeline-content">
                             <h3>Computer Engineering</h3>
                             <p>UCHNA, Tabriz, Iran</p>
-                            <p class="timeline-date">Expected Graduation: 2028</p>
+                            <p class="timeline-date">Graduation: 2026</p>
                         </div>
                     </div>
 
@@ -179,14 +271,14 @@
                 <div class="certifications-container">
 
                     <div class="card glass cert-card">
-                        <h3>TOEFL</h3>
+                        <h3>TOEFL iBT</h3>
                         <p>Score: <strong>109 / 120</strong></p>
                         <p>Issued by: Chitsazan Language Institute</p>
                         <p>Date: 2019</p>
                     </div>
 
                     <div class="card glass cert-card">
-                        <h3>IELTS</h3>
+                        <h3>IELTS Academic</h3>
                         <p>Score: <strong>7.5 / 9.0</strong> (C1)</p>
                         <p>Issued by: IDP Education</p>
                         <p>Date: 2024</p>
@@ -212,15 +304,15 @@
                     <div class="card glass social-card">
                         <h3>Connect With Me</h3>
                         <div class="social-links">
-                            <a href="mailto:mobinmardi.uni@gmail.com" class="social-link" id="email-link" target="_blank">
+                            <a href="mailto:mobinmardi.uni@gmail.com" class="social-link" id="email-link" target="_blank" aria-label="Send email to Mobin">
                                 <span class="material-symbols-rounded">mail</span>
                                 <span>Email</span>
                             </a>
-                            <a href="https://github.com/MobinMardi" class="social-link" target="_blank">
+                            <a href="https://github.com/MobinMardi" class="social-link" target="_blank" aria-label="Visit Mobin's GitHub profile">
                                 <span class="material-symbols-rounded">code</span>
                                 <span>GitHub</span>
                             </a>
-                            <a href="https://instagram.com/riotmdev" class="social-link" target="_blank">
+                            <a href="https://instagram.com/riotmdev" class="social-link" target="_blank" aria-label="Visit Mobin's Instagram profile">
                                 <span class="material-symbols-rounded">photo_camera</span>
                                 <span>Instagram</span>
                             </a>
@@ -230,8 +322,8 @@
                     <div class="card glass support-card">
                         <h3>Support</h3>
                         <div class="support-content">
-                            <a href="https://www.coffeebede.com/mdev" class="support-link" target="_blank">
-                                <img class="support-img" src="img/bmac.png" alt="Buy me a coffee" />
+                            <a href="https://www.coffeebede.com/mdev" class="support-link" target="_blank" aria-label="Support Mobin on CoffeeBede">
+                                <img class="support-img" src="img/bmac.png" alt="Buy me a coffee — Support mDev's work" />
                             </a>
                         </div>
                     </div>
@@ -243,9 +335,14 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 Mobin Mardi. All rights reserved.</p>
+            <p>&copy; 2026 Mobin Mardi. All rights reserved. <span style="opacity: 0.5; font-size: 0.85em;">Updated: July 2026</span></p>
         </div>
     </footer>
+
+    <!-- ===== BACK TO TOP BUTTON ===== -->
+    <button id="back-to-top" class="btn secondary-btn" aria-label="Back to top" style="position: fixed; bottom: 2rem; right: 2rem; z-index: 999; opacity: 0; visibility: hidden; transition: all 0.3s ease; padding: 0.75rem; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; box-shadow: var(--glass-shadow-hover);">
+        <span class="material-symbols-rounded" style="font-size: 1.5rem;">arrow_upward</span>
+    </button>
 
     <script src="js/script.js"></script>
 </body>

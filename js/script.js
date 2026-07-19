@@ -15,8 +15,191 @@ const certCards = document.querySelectorAll('.cert-card');
 const emailLink = document.getElementById('email-link');
 const headerGlass = document.querySelector('.header-glass');
 
-// Initialize the page
+// ============================================================
+//  AGE CALCULATOR — Tehran Time (GMT+3:30)
+// ============================================================
+function calculateAge() {
+    const birthDate = new Date('2005-06-06T00:00:00+03:30');
+    const now = new Date();
+    
+    const tehranOffset = 3.5 * 60 * 60 * 1000;
+    const localOffset = now.getTimezoneOffset() * 60 * 1000;
+    const nowTehran = new Date(now.getTime() + localOffset + tehranOffset);
+    
+    let age = nowTehran.getFullYear() - birthDate.getFullYear();
+    const monthDiff = nowTehran.getMonth() - birthDate.getMonth();
+    const dayDiff = nowTehran.getDate() - birthDate.getDate();
+    
+    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+        age--;
+    }
+    
+    return age;
+}
+
+// ============================================================
+//  TICKET COUNTER — Date-Based, Automatically Increases
+//  Start date: 2025/01/12 (assigned as Community Manager)
+//  Weekly tickets: 10-25 based on a fixed pattern
+// ============================================================
+function calculateTickets() {
+    const startDate = new Date('2025-01-12T00:00:00+03:30');
+    const now = new Date();
+    
+    const tehranOffset = 3.5 * 60 * 60 * 1000;
+    const localOffset = now.getTimezoneOffset() * 60 * 1000;
+    const nowTehran = new Date(now.getTime() + localOffset + tehranOffset);
+    
+    if (nowTehran < startDate) return 0;
+    
+    const diffMs = nowTehran - startDate;
+    const diffWeeks = Math.floor(diffMs / (7 * 24 * 60 * 60 * 1000));
+    
+    if (diffWeeks <= 0) return 0;
+    
+    let totalTickets = 0;
+    
+    for (let i = 0; i < diffWeeks; i++) {
+        const cycle = i % 6;
+        
+        let weeklyCount;
+        switch (cycle) {
+            case 0: weeklyCount = 18; break;
+            case 1: weeklyCount = 22; break;
+            case 2: weeklyCount = 14; break;
+            case 3: weeklyCount = 20; break;
+            case 4: weeklyCount = 11; break;
+            case 5: weeklyCount = 16; break;
+            default: weeklyCount = 17;
+        }
+        
+        const variation = (i * 7 + i * 3) % 5;
+        weeklyCount += variation - 2;
+        weeklyCount = Math.max(8, Math.min(26, weeklyCount));
+        
+        totalTickets += weeklyCount;
+    }
+    
+    return totalTickets;
+}
+
+// ============================================================
+//  ANIMATED COUNTER
+// ============================================================
+function animateCounter(element, target, duration = 2500) {
+    const start = 0;
+    const startTime = performance.now();
+    
+    function updateCounter(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.floor(start + (target - start) * eased);
+        
+        element.textContent = current.toLocaleString();
+        
+        if (progress < 1) {
+            requestAnimationFrame(updateCounter);
+        } else {
+            element.textContent = target.toLocaleString();
+        }
+    }
+    
+    requestAnimationFrame(updateCounter);
+}
+
+// ============================================================
+//  PARALLAX — Fixed to prevent scroll jump on refresh
+// ============================================================
+let isPageLoaded = false;
+let ticking = false;
+
+function updateParallax() {
+    const heroSection = document.querySelector('.hero-section');
+    const heroContent = document.querySelector('.hero-content');
+    const meshBlobs = document.querySelectorAll('.bg-mesh span');
+    
+    if (!heroSection || !heroContent) return;
+    
+    const heroHeight = heroSection.offsetHeight;
+    const scrollY = window.scrollY;
+    
+    if (scrollY <= heroHeight) {
+        const parallaxValue = scrollY * 0.25;
+        heroContent.style.transform = `translateY(${parallaxValue}px)`;
+    } else {
+        const maxOffset = heroHeight * 0.25;
+        heroContent.style.transform = `translateY(${maxOffset}px)`;
+    }
+    
+    meshBlobs.forEach((blob, index) => {
+        const speed = 0.08 + index * 0.03;
+        blob.style.translate = `0 ${scrollY * speed}px`;
+    });
+    
+    if (headerGlass) {
+        headerGlass.style.boxShadow = scrollY > 20
+            ? 'var(--glass-shadow-hover)'
+            : '';
+    }
+}
+
+function handleScroll() {
+    if (!ticking) {
+        requestAnimationFrame(() => {
+            updateParallax();
+            ticking = false;
+        });
+        ticking = true;
+    }
+}
+
+// ============================================================
+//  BACK TO TOP BUTTON
+// ============================================================
+const backToTop = document.getElementById('back-to-top');
+if (backToTop) {
+    let isVisible = false;
+    
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        const shouldBeVisible = scrollY > 500;
+        
+        if (shouldBeVisible && !isVisible) {
+            backToTop.classList.add('visible');
+            isVisible = true;
+        } else if (!shouldBeVisible && isVisible) {
+            backToTop.classList.remove('visible');
+            isVisible = false;
+        }
+    }, { passive: true });
+    
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+// ============================================================
+//  INIT COUNTERS
+// ============================================================
 document.addEventListener('DOMContentLoaded', () => {
+    // Age counter
+    const ageDisplay = document.getElementById('age-display');
+    if (ageDisplay) {
+        const age = calculateAge();
+        ageDisplay.textContent = age;
+    }
+    
+    // Ticket counter with animation
+    const ticketCounter = document.getElementById('ticket-counter');
+    if (ticketCounter) {
+        const tickets = calculateTickets();
+        animateCounter(ticketCounter, tickets, 2500);
+    }
+    
     // Initial page load animation
     setTimeout(() => {
         pageTransition.style.transform = 'translateY(-100%)';
@@ -43,18 +226,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Check for saved theme preference or use preferred color scheme
+// ============================================================
+//  PARALLAX INIT — Wait for load to prevent jump
+// ============================================================
+window.addEventListener('load', () => {
+    isPageLoaded = true;
+    document.body.classList.add('loaded');
+    updateParallax();
+});
+
+window.addEventListener('scroll', handleScroll, { passive: true });
+window.addEventListener('resize', updateParallax, { passive: true });
+
+// ============================================================
+//  THEME TOGGLE
+// ============================================================
 const savedTheme = localStorage.getItem('theme');
 const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
 
-// Set initial theme
 if (savedTheme === 'dark' || (!savedTheme && prefersDarkScheme.matches)) {
     setDarkTheme();
 } else {
     setLightTheme();
 }
 
-// Theme toggle functionality
 themeToggleBtn.addEventListener('click', () => {
     pageTransition.style.transform = 'translateY(0)';
 
@@ -85,7 +280,9 @@ function setLightTheme() {
     localStorage.setItem('theme', 'light');
 }
 
-// Mobile menu toggle
+// ============================================================
+//  MOBILE MENU
+// ============================================================
 if (mobileMenuBtn) {
     mobileMenuBtn.addEventListener('click', () => {
         mobileMenuBtn.classList.toggle('active');
@@ -106,7 +303,6 @@ if (mobileMenuBtn) {
     });
 }
 
-// Close mobile menu when clicking a link
 mobileNavLinks.forEach(link => {
     link.addEventListener('click', () => {
         mobileMenuBtn.classList.remove('active');
@@ -120,7 +316,9 @@ mobileNavLinks.forEach(link => {
     });
 });
 
-// Smooth scrolling for navigation links
+// ============================================================
+//  SMOOTH SCROLLING
+// ============================================================
 navLinks.forEach(link => {
     link.addEventListener('click', smoothScroll);
 });
@@ -145,7 +343,9 @@ function smoothScroll(e) {
     }
 }
 
-// Intersection Observer for scroll animations
+// ============================================================
+//  INTERSECTION OBSERVER
+// ============================================================
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -162,7 +362,9 @@ const observer = new IntersectionObserver((entries) => {
 sectionTitles.forEach(title => observer.observe(title));
 cards.forEach(card => observer.observe(card));
 
-// Material Design ripple effect for buttons
+// ============================================================
+//  RIPPLE EFFECT
+// ============================================================
 function createRipple(event) {
     const button = event.currentTarget;
 
@@ -188,49 +390,9 @@ buttons.forEach(button => {
     button.addEventListener('click', createRipple);
 });
 
-// Placeholder for profile image
+// ============================================================
+//  PROFILE IMAGE
+// ============================================================
 if (profileImg) {
     profileImg.src = profileImg.src || 'img/Profile.png';
 }
-
-// Subtle parallax for hero blobs (transform-only, GPU friendly)
-const heroSection = document.querySelector('.hero-section');
-const heroContent = document.querySelector('.hero-content');
-const meshBlobs = document.querySelectorAll('.bg-mesh span');
-let ticking = false;
-
-window.addEventListener('scroll', () => {
-    if (!ticking) {
-        requestAnimationFrame(() => {
-            const scrollPosition = window.scrollY;
-
-            if (heroSection && heroContent) {
-                const heroHeight = heroSection.offsetHeight;
-                if (scrollPosition <= heroHeight) {
-                    const parallaxValue = scrollPosition * 0.25;
-                    heroContent.style.transform = `translateY(${parallaxValue}px)`;
-                }
-            }
-
-            meshBlobs.forEach((blob, index) => {
-                const speed = 0.08 + index * 0.03;
-                blob.style.translate = `0 ${scrollPosition * speed}px`;
-            });
-
-            // Header depth feedback on scroll
-            if (headerGlass) {
-                headerGlass.style.boxShadow = scrollPosition > 20
-                    ? 'var(--glass-shadow-hover)'
-                    : '';
-            }
-
-            ticking = false;
-        });
-        ticking = true;
-    }
-}, { passive: true });
-
-// Add loaded class to body once everything is ready (prevents transition flash)
-window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
-});
