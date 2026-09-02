@@ -56,7 +56,6 @@
   --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-bounce: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   --transition-glass: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  --theme-transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* ---- Radius (rounder = glassier) ---- */
   --radius-sm: 14px;
@@ -156,57 +155,11 @@ body {
   line-height: 1.6;
   background-color: var(--bg-base);
   color: var(--on-surface);
-  transition: background-color var(--theme-transition), color var(--theme-transition);
+  transition: background-color var(--transition-normal), color var(--transition-normal);
   overflow-x: hidden;
   width: 100%;
   min-height: 100dvh;
   position: relative;
-}
-
-/* Smooth transitions for all themed elements */
-.glass,
-.header-glass,
-.card,
-.skill-icon,
-.social-link,
-#back-to-top,
-.btn,
-.secondary-btn {
-  transition: background-color var(--theme-transition), 
-              color var(--theme-transition), 
-              border-color var(--theme-transition),
-              box-shadow var(--theme-transition),
-              transform var(--transition-glass);
-}
-
-/* Elements that only need color transitions */
-h1, h2, h3, h4, h5, h6,
-p,
-.logo,
-.hero-subtitle,
-.hero-text p,
-.section-title::after,
-.timeline::before,
-.timeline-dot,
-.skill-card li::before,
-.cert-card h3,
-.social-card h3,
-.support-card h3,
-footer p,
-.nav-link,
-.mobile-nav-link,
-.timeline-date {
-  transition: color var(--theme-transition), 
-              background var(--theme-transition),
-              border-color var(--theme-transition);
-}
-
-/* Profile image frame and gradient elements */
-.profile-frame,
-.hero-text h1,
-.primary-btn {
-  transition: background var(--theme-transition), 
-              box-shadow var(--theme-transition);
 }
 
 img {
@@ -239,7 +192,6 @@ img {
   filter: blur(min(90px, 12vw));
   opacity: 0.55;
   will-change: transform;
-  transition: background-color var(--theme-transition);
 }
 
 body.dark-theme .bg-mesh span {
@@ -316,7 +268,7 @@ body.dark-theme .bg-mesh span {
   box-shadow: var(--glass-shadow);
   isolation: isolate;
   transition: box-shadow var(--transition-glass), transform var(--transition-glass),
-    background-color var(--theme-transition), border-color var(--theme-transition);
+    background-color var(--transition-normal), border-color var(--transition-normal);
 }
 
 .glass::before {
@@ -329,7 +281,6 @@ body.dark-theme .bg-mesh span {
   pointer-events: none;
   z-index: 1;
   mix-blend-mode: overlay;
-  transition: background var(--theme-transition);
 }
 
 .glass::after {
@@ -340,7 +291,6 @@ body.dark-theme .bg-mesh span {
   pointer-events: none;
   z-index: 1;
   box-shadow: inset 0 1px 0 var(--glass-border-soft);
-  transition: box-shadow var(--theme-transition);
 }
 
 /* ============================================================
@@ -351,7 +301,6 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.15;
   letter-spacing: -0.02em;
   margin-bottom: var(--spacing-md);
-  transition: color var(--theme-transition);
 }
 
 h1 { font-size: var(--font-size-3xl); }
@@ -362,7 +311,6 @@ p {
   margin-bottom: var(--spacing-md);
   font-weight: 400;
   color: var(--on-surface);
-  transition: color var(--theme-transition);
 }
 
 a {
@@ -387,11 +335,9 @@ button:focus-visible {
   position: fixed;
   inset: 0;
   background: linear-gradient(135deg, var(--primary), var(--tertiary));
-  z-index: 9998;
+  z-index: 9999;
   transform: translateY(100%);
   pointer-events: none;
-  transition: transform 0.6s cubic-bezier(0.76, 0, 0.24, 1),
-              background 0.6s ease;
 }
 
 /* ============================================================
@@ -417,9 +363,6 @@ header .container {
   padding: 0 clamp(0.9rem, 2vw, 1.5rem);
   border-radius: var(--radius-full);
   background: var(--glass-fill-strong);
-  transition: background var(--theme-transition), 
-              box-shadow var(--theme-transition),
-              border-color var(--theme-transition);
 }
 
 .logo {
@@ -429,7 +372,6 @@ header .container {
   position: relative;
   z-index: 2;
   flex-shrink: 0;
-  transition: color var(--theme-transition);
 }
 
 nav {
@@ -446,7 +388,6 @@ nav ul {
   padding: 4px;
   background: rgba(var(--on-surface-rgb), 0.05);
   border-radius: var(--radius-full);
-  transition: background var(--theme-transition);
 }
 
 .nav-link {
@@ -527,8 +468,7 @@ nav ul {
   -webkit-backdrop-filter: blur(30px) saturate(160%);
   opacity: 0;
   visibility: hidden;
-  transition: opacity var(--transition-glass), visibility var(--transition-glass),
-              background var(--theme-transition);
+  transition: opacity var(--transition-glass), visibility var(--transition-glass);
 }
 
 .mobile-menu.active {
@@ -598,7 +538,6 @@ nav ul {
   z-index: -1;
   animation: rotateFrame 24s linear infinite;
   box-shadow: var(--glass-shadow);
-  transition: background var(--theme-transition);
 }
 
 @keyframes rotateFrame {
@@ -612,7 +551,6 @@ nav ul {
   border-radius: 34%;
   border: 4px solid var(--glass-border);
   box-shadow: var(--glass-shadow);
-  transition: border-color var(--theme-transition), box-shadow var(--theme-transition);
 }
 
 .hero-text {
@@ -632,7 +570,6 @@ nav ul {
   padding: 0.35rem 0.9rem;
   border-radius: var(--radius-full);
   background: rgba(var(--primary-rgb), 0.14);
-  transition: color var(--theme-transition), background var(--theme-transition);
 }
 
 .hero-text h1 {
@@ -642,7 +579,6 @@ nav ul {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  transition: background var(--theme-transition);
 }
 
 .hero-text p {
@@ -650,7 +586,6 @@ nav ul {
   margin-bottom: var(--spacing-xl);
   color: var(--on-surface-variant);
   max-width: 56ch;
-  transition: color var(--theme-transition);
 }
 
 .cta-buttons {
@@ -674,20 +609,13 @@ nav ul {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  transition: transform var(--transition-glass), 
-              box-shadow var(--transition-glass), 
-              background-color var(--theme-transition),
-              color var(--theme-transition),
-              border-color var(--theme-transition);
+  transition: transform var(--transition-glass), box-shadow var(--transition-glass), background-color var(--transition-normal);
 }
 
 .primary-btn {
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   color: var(--on-primary);
   box-shadow: 0 8px 24px rgba(var(--primary-rgb), 0.35);
-  transition: background var(--theme-transition), 
-              box-shadow var(--theme-transition),
-              transform var(--transition-glass);
 }
 
 .primary-btn:hover {
@@ -701,10 +629,6 @@ nav ul {
   -webkit-backdrop-filter: blur(16px);
   color: var(--primary);
   border: 1px solid var(--glass-border);
-  transition: background var(--theme-transition), 
-              color var(--theme-transition),
-              border-color var(--theme-transition),
-              transform var(--transition-glass);
 }
 
 .secondary-btn:hover {
@@ -747,7 +671,7 @@ section {
   border-radius: var(--radius-full);
   background: linear-gradient(90deg, var(--primary), var(--secondary));
   transform: translateX(-50%) scaleX(0);
-  transition: transform 0.6s ease 0.15s, background var(--theme-transition);
+  transition: transform 0.6s ease 0.15s;
 }
 
 .section-title.visible::after {
@@ -760,10 +684,8 @@ section {
   margin-bottom: var(--spacing-lg);
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease, 
-              box-shadow var(--transition-glass),
-              background-color var(--theme-transition),
-              border-color var(--theme-transition);
+  transition: opacity 0.6s ease, transform 0.6s ease, box-shadow var(--transition-glass),
+    background-color var(--transition-normal);
 }
 
 .card.visible {
@@ -803,9 +725,7 @@ section {
   align-items: center;
   justify-content: center;
   margin-bottom: var(--spacing-md);
-  transition: all var(--transition-glass), 
-              background var(--theme-transition),
-              color var(--theme-transition);
+  transition: all var(--transition-glass);
   flex-shrink: 0;
 }
 
@@ -829,7 +749,6 @@ section {
   position: relative;
   padding-left: var(--spacing-md);
   word-break: break-word;
-  transition: color var(--theme-transition);
 }
 
 .skill-card li::before {
@@ -841,7 +760,6 @@ section {
   height: 6px;
   border-radius: 50%;
   background: var(--primary);
-  transition: background var(--theme-transition);
 }
 
 /* Education timeline */
@@ -860,7 +778,6 @@ section {
   width: 2px;
   background: linear-gradient(to bottom, var(--primary), var(--secondary));
   transform: translateX(-50%);
-  transition: background var(--theme-transition);
 }
 
 .timeline-item {
@@ -879,9 +796,7 @@ section {
   border-radius: var(--radius-full);
   transform: translateX(-50%);
   z-index: 1;
-  transition: all var(--transition-normal),
-              background var(--theme-transition),
-              border-color var(--theme-transition);
+  transition: all var(--transition-normal);
 }
 
 .timeline-item:hover .timeline-dot {
@@ -899,7 +814,6 @@ section {
   font-style: italic;
   color: var(--on-surface-variant);
   margin-bottom: 0;
-  transition: color var(--theme-transition);
 }
 
 /* Certifications */
@@ -911,7 +825,7 @@ section {
 
 .cert-card { transition-delay: calc(var(--index, 0) * 0.1s); }
 
-.cert-card h3 { color: var(--primary); margin-bottom: var(--spacing-md); transition: color var(--theme-transition); }
+.cert-card h3 { color: var(--primary); margin-bottom: var(--spacing-md); }
 
 .cert-card p { margin-bottom: var(--spacing-sm); word-break: break-word; }
 
@@ -930,7 +844,6 @@ section {
 .social-card h3, .support-card h3 {
   margin-bottom: var(--spacing-xl);
   color: var(--primary);
-  transition: color var(--theme-transition);
 }
 
 .social-links {
@@ -950,10 +863,7 @@ section {
   background: rgba(var(--on-surface-rgb), 0.05);
   border: 1px solid var(--glass-border-soft);
   color: var(--on-surface-variant);
-  transition: all var(--transition-glass),
-              background var(--theme-transition),
-              border-color var(--theme-transition),
-              color var(--theme-transition);
+  transition: all var(--transition-glass);
   min-width: 0;
 }
 
@@ -1013,7 +923,6 @@ footer p {
   color: var(--on-surface-variant);
   font-size: var(--font-size-sm);
   margin-bottom: 0;
-  transition: color var(--theme-transition);
 }
 
 /* ============================================================
@@ -1033,10 +942,7 @@ footer p {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all var(--transition-glass),
-              background var(--theme-transition),
-              border-color var(--theme-transition),
-              color var(--theme-transition);
+  transition: all var(--transition-glass);
   box-shadow: var(--glass-shadow);
 }
 

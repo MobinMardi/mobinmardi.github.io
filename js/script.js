@@ -16,46 +16,6 @@ const emailLink = document.getElementById('email-link');
 const headerGlass = document.querySelector('.header-glass');
 
 // ============================================================
-//  THEME TOGGLE — Smooth like cv.html (no blink)
-// ============================================================
-const savedTheme = localStorage.getItem('theme');
-const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-
-if (savedTheme === 'dark' || (!savedTheme && prefersDarkScheme.matches)) {
-    setDarkTheme();
-} else {
-    setLightTheme();
-}
-
-themeToggleBtn.addEventListener('click', () => {
-    if (body.classList.contains('light-theme')) {
-        setDarkTheme();
-    } else {
-        setLightTheme();
-    }
-});
-
-function setDarkTheme() {
-    body.classList.remove('light-theme');
-    body.classList.add('dark-theme');
-    themeIcon.textContent = 'light_mode';
-    localStorage.setItem('theme', 'dark');
-    if (pageTransition) {
-        pageTransition.style.background = 'linear-gradient(135deg, var(--dark-primary), var(--dark-tertiary))';
-    }
-}
-
-function setLightTheme() {
-    body.classList.remove('dark-theme');
-    body.classList.add('light-theme');
-    themeIcon.textContent = 'dark_mode';
-    localStorage.setItem('theme', 'light');
-    if (pageTransition) {
-        pageTransition.style.background = 'linear-gradient(135deg, var(--light-primary), var(--light-tertiary))';
-    }
-}
-
-// ============================================================
 //  AGE CALCULATOR — Tehran Time (GMT+3:30)
 // ============================================================
 function calculateAge() {
@@ -277,6 +237,48 @@ window.addEventListener('load', () => {
 
 window.addEventListener('scroll', handleScroll, { passive: true });
 window.addEventListener('resize', updateParallax, { passive: true });
+
+// ============================================================
+//  THEME TOGGLE
+// ============================================================
+const savedTheme = localStorage.getItem('theme');
+const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+if (savedTheme === 'dark' || (!savedTheme && prefersDarkScheme.matches)) {
+    setDarkTheme();
+} else {
+    setLightTheme();
+}
+
+themeToggleBtn.addEventListener('click', () => {
+    pageTransition.style.transform = 'translateY(0)';
+
+    setTimeout(() => {
+        if (body.classList.contains('light-theme')) {
+            setDarkTheme();
+        } else {
+            setLightTheme();
+        }
+
+        setTimeout(() => {
+            pageTransition.style.transform = 'translateY(-100%)';
+        }, 300);
+    }, 300);
+});
+
+function setDarkTheme() {
+    body.classList.remove('light-theme');
+    body.classList.add('dark-theme');
+    themeIcon.textContent = 'light_mode';
+    localStorage.setItem('theme', 'dark');
+}
+
+function setLightTheme() {
+    body.classList.remove('dark-theme');
+    body.classList.add('light-theme');
+    themeIcon.textContent = 'dark_mode';
+    localStorage.setItem('theme', 'light');
+}
 
 // ============================================================
 //  MOBILE MENU
