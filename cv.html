@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Mobin Mardi - CV</title>
+
+    <meta name="description" content="Mobin Mardi — Curriculum Vitae. Computer Engineering student, Community Manager at Riot Games." />
+    <link rel="icon" href="https://i.postimg.cc/5t4yKsr4/favicon-32x32.png" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ---- Inherit theme variables from main site ---- */
+        :root {
+            --light-primary: #6750a4;
+            --light-primary-container: #eaddff;
+            --light-secondary: #9a82db;
+            --light-tertiary: #7d5260;
+            --light-on-primary: #ffffff;
+            --light-on-primary-container: #21005e;
+            --light-on-surface: #1c1b1f;
+            --light-on-surface-variant: #49454e;
+            --light-outline: #79747e;
+
+            --dark-primary: #d0bcff;
+            --dark-primary-container: #4f378b;
+            --dark-secondary: #ccc2dc;
+            --dark-tertiary: #efb8c8;
+            --dark-on-primary: #371e73;
+            --dark-on-primary-container: #eaddff;
+            --dark-on-surface: #e6e1e5;
+            --dark-on-surface-variant: #cac4d0;
+            --dark-outline: #938f99;
+
+            --font-family: "Inter", sans-serif;
+            --spacing-sm: clamp(0.5rem, 0.45rem + 0.2vw, 0.65rem);
+            --spacing-md: clamp(0.85rem, 0.75rem + 0.4vw, 1.1rem);
+            --spacing-lg: clamp(1.2rem, 1rem + 0.8vw, 1.7rem);
+            --spacing-xl: clamp(1.6rem, 1.3rem + 1.2vw, 2.4rem);
+            --radius-lg: 28px;
+            --radius-full: 9999px;
+            --transition-normal: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body.light-theme {
+            --primary: var(--light-primary);
+            --primary-rgb: 103, 80, 164;
+            --secondary: var(--light-secondary);
+            --tertiary: var(--light-tertiary);
+            --on-primary: var(--light-on-primary);
+            --on-primary-container: var(--light-on-primary-container);
+            --on-surface: var(--light-on-surface);
+            --on-surface-rgb: 28, 27, 31;
+            --on-surface-variant: var(--light-on-surface-variant);
+            --outline: var(--light-outline);
+            --bg-base: #f3effa;
+            --bg-base-rgb: 243, 239, 250;
+            --glass-fill: rgba(255, 255, 255, 0.45);
+            --glass-fill-strong: rgba(255, 255, 255, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.65);
+            --glass-border-soft: rgba(255, 255, 255, 0.35);
+            --glass-shadow: 0 8px 32px rgba(103, 80, 164, 0.14), 0 1px 1px rgba(255, 255, 255, 0.6) inset;
+            --glass-shadow-hover: 0 16px 48px rgba(103, 80, 164, 0.2), 0 1px 1px rgba(255, 255, 255, 0.7) inset;
+            --glass-specular: linear-gradient(135deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.12) 35%, rgba(255,255,255,0) 60%);
+        }
+
+        body.dark-theme {
+            --primary: var(--dark-primary);
+            --primary-rgb: 208, 188, 255;
+            --secondary: var(--dark-secondary);
+            --tertiary: var(--dark-tertiary);
+            --on-primary: var(--dark-on-primary);
+            --on-primary-container: var(--dark-on-primary-container);
+            --on-surface: var(--dark-on-surface);
+            --on-surface-rgb: 230, 225, 229;
+            --on-surface-variant: var(--dark-on-surface-variant);
+            --outline: var(--dark-outline);
+            --bg-base: #14111c;
+            --bg-base-rgb: 20, 17, 28;
+            --glass-fill: rgba(40, 36, 54, 0.45);
+            --glass-fill-strong: rgba(40, 36, 54, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.14);
+            --glass-border-soft: rgba(255, 255, 255, 0.07);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.45), 0 1px 1px rgba(255, 255, 255, 0.07) inset;
+            --glass-shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.55), 0 1px 1px rgba(255, 255, 255, 0.1) inset;
+            --glass-specular: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.03) 35%, rgba(255,255,255,0) 60%);
+        }
+
+        /* ---- Reset & Base ---- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-base);
+            color: var(--on-surface);
+            transition: background-color var(--transition-normal), color var(--transition-normal);
+            line-height: 1.6;
+            padding: 2rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            min-height: 100dvh;
+            opacity: 0;
+            animation: fadeInPage 0.6s ease forwards;
+        }
+
+        @keyframes fadeInPage {
+            0% { opacity: 0; transform: translateY(12px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ---- Loading Spinner (shows while page loads) ---- */
+        .page-loader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: var(--bg-base);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        .page-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .loader-spinner {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 4px solid var(--glass-border-soft);
+            border-top-color: var(--primary);
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Hide loader once page is ready */
+        body.loaded .page-loader {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        /* ---- Background Mesh ---- */
+        .bg-mesh {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .bg-mesh span {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(min(90px, 12vw));
+            opacity: 0.55;
+            will-change: transform;
+        }
+        body.dark-theme .bg-mesh span { opacity: 0.35; }
+        .bg-mesh .m1 {
+            width: clamp(280px, 38vw, 560px);
+            height: clamp(280px, 38vw, 560px);
+            background: var(--primary);
+            top: -10%;
+            left: -8%;
+            animation: drift1 22s ease-in-out infinite alternate;
+        }
+        .bg-mesh .m2 {
+            width: clamp(240px, 32vw, 480px);
+            height: clamp(240px, 32vw, 480px);
+            background: var(--tertiary);
+            top: 35%;
+            right: -10%;
+            animation: drift2 26s ease-in-out infinite alternate;
+        }
+        .bg-mesh .m3 {
+            width: clamp(220px, 30vw, 460px);
+            height: clamp(220px, 30vw, 460px);
+            background: var(--secondary);
+            bottom: -12%;
+            left: 18%;
+            animation: drift3 30s ease-in-out infinite alternate;
+        }
+        @keyframes drift1 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(6vw, 8vh) scale(1.15); } }
+        @keyframes drift2 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(-7vw, 6vh) scale(0.9); } }
+        @keyframes drift3 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(5vw, -6vh) scale(1.1); } }
+
+        /* ---- Glass Utility ---- */
+        .glass {
+            position: relative;
+            background: var(--glass-fill);
+            backdrop-filter: blur(20px) saturate(160%);
+            -webkit-backdrop-filter: blur(20px) saturate(160%);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--glass-shadow);
+            isolation: isolate;
+            transition: box-shadow var(--transition-normal), background-color var(--transition-normal), border-color var(--transition-normal);
+            padding: var(--spacing-lg);
+        }
+        .glass::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: var(--glass-specular);
+            opacity: 0.9;
+            pointer-events: none;
+            z-index: 1;
+            mix-blend-mode: overlay;
+        }
+        .glass::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            z-index: 1;
+            box-shadow: inset 0 1px 0 var(--glass-border-soft);
+        }
+        .glass > * { position: relative; z-index: 2; }
+
+        /* ---- Typography ---- */
+        h1 {
+            font-size: clamp(1.6rem, 1.35rem + 1.2vw, 2.2rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: var(--spacing-sm);
+            margin-top: var(--spacing-xl);
+            margin-bottom: var(--spacing-md);
+            color: var(--on-surface);
+        }
+        h2 {
+            font-size: clamp(1.2rem, 1rem + 0.6vw, 1.5rem);
+            font-weight: 600;
+            margin-top: var(--spacing-lg);
+            margin-bottom: var(--spacing-sm);
+            color: var(--on-surface);
+        }
+        h3 {
+            font-size: clamp(1rem, 0.9rem + 0.4vw, 1.15rem);
+            font-weight: 600;
+            margin-top: var(--spacing-md);
+            margin-bottom: var(--spacing-xs);
+            color: var(--on-surface);
+        }
+        p { margin-bottom: var(--spacing-sm); color: var(--on-surface-variant); }
+        .date { color: var(--on-surface-variant); font-style: italic; font-size: 0.9rem; }
+
+        /* ---- Lists ---- */
+        ul { list-style: none; padding-left: 0; margin-bottom: var(--spacing-md); }
+        ul li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--on-surface-variant);
+        }
+        ul li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: 700;
+        }
+        .indent { padding-left: 1.8rem; }
+        .indent li::before { content: "◦"; }
+
+        /* ---- GPA Badges ---- */
+        .gpa-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 1rem;
+            align-items: center;
+            margin: 0.2rem 0 0.4rem 0;
+        }
+        .gpa-badge {
+            background: rgba(var(--primary-rgb), 0.16);
+            padding: 0.1rem 0.8rem;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid var(--glass-border-soft);
+        }
+        .gpa-badge-international {
+            background: rgba(var(--primary-rgb), 0.08);
+            padding: 0.1rem 0.8rem;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid var(--glass-border-soft);
+        }
+        .gpa-label { color: var(--on-surface-variant); font-size: 0.85rem; }
+
+        /* ---- Metric Highlight ---- */
+        .metric-highlight {
+            background: rgba(var(--primary-rgb), 0.12);
+            padding: 0.05rem 0.6rem;
+            border-radius: var(--radius-full);
+            font-weight: 500;
+            border: 1px solid var(--glass-border-soft);
+            display: inline-block;
+            font-size: 0.85rem;
+        }
+
+        /* ---- Header / Nav ---- */
+        .cv-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+        }
+        .cv-header .logo {
+            font-size: clamp(1.2rem, 1rem + 0.6vw, 1.6rem);
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .cv-header .logo a { color: var(--primary); text-decoration: none; }
+        .cv-header .back-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: color var(--transition-normal);
+        }
+        .cv-header .back-link:hover { color: var(--secondary); }
+
+        /* ---- Theme Toggle (mini) ---- */
+        .theme-toggle-mini {
+            background: var(--glass-fill-strong);
+            border: 1px solid var(--glass-border-soft);
+            border-radius: var(--radius-full);
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--on-surface);
+            transition: all var(--transition-normal);
+        }
+        .theme-toggle-mini:hover {
+            transform: scale(1.08) rotate(15deg);
+            background: rgba(var(--primary-rgb), 0.2);
+        }
+
+        /* ---- Print Button ---- */
+        .print-btn {
+            background: var(--primary);
+            color: var(--on-primary);
+            border: none;
+            padding: 0.7rem 2rem;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .print-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(var(--primary-rgb), 0.35);
+        }
+        .print-btn:active { transform: scale(0.95); }
+
+        /* ---- Responsive ---- */
+        @media (max-width: 600px) {
+            body { padding: 1rem 0.8rem; }
+            .glass { padding: var(--spacing-md); }
+            .cv-header { flex-direction: column; align-items: flex-start; }
+            .gpa-container { flex-direction: column; align-items: flex-start; gap: 0.2rem; }
+            .indent { padding-left: 1rem; }
+            h1 { margin-top: var(--spacing-lg); }
+        }
+
+        /* ---- Print ---- */
+        @media print {
+            body { background: white; padding: 0.5in; opacity: 1 !important; animation: none !important; }
+            .page-loader { display: none !important; }
+            .bg-mesh { display: none; }
+            .glass {
+                background: white !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                border: 1px solid #ccc !important;
+                box-shadow: none !important;
+            }
+            .glass::before, .glass::after { display: none; }
+            .cv-header .back-link { display: none; }
+            .theme-toggle-mini { display: none; }
+            .no-print { display: none !important; }
+            h1 { border-bottom-color: #000; }
+            .gpa-badge, .gpa-badge-international { background: #eee; border-color: #999; }
+            .metric-highlight { background: #eee; border-color: #999; }
+        }
+    </style>
+</head>
+<body class="light-theme">
+
+    <!-- ===== PAGE LOADER ===== -->
+    <div class="page-loader" id="page-loader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <div class="bg-mesh" aria-hidden="true">
+        <span class="m1"></span>
+        <span class="m2"></span>
+        <span class="m3"></span>
+    </div>
+
+    <div class="container">
+
+        <!-- ===== HEADER ===== -->
+        <div class="cv-header">
+            <div class="logo"><a href="index.html">.mdev</a> <span style="font-weight: 400; color: var(--on-surface-variant); font-size: 0.7em;">/ CV</span></div>
+            <div style="display: flex; align-items: center; gap: var(--spacing-md); flex-wrap: wrap;">
+                <a href="index.html" class="back-link">
+                    <span class="material-symbols-rounded" style="font-size: 1.2rem;">arrow_back</span>
+                    Back to Portfolio
+                </a>
+                <button class="theme-toggle-mini" id="theme-toggle-btn" aria-label="Toggle dark mode">
+                    <span class="material-symbols-rounded" id="theme-icon" style="font-size: 1.3rem;">dark_mode</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- ===== PROFILE ===== -->
+        <h1>Profile</h1>
+        <p><strong>Computer Engineering student</strong> with a strong interest in <strong>Human-Computer Interaction (HCI), community-driven systems, and network optimization</strong>. Experienced in managing large-scale, cross-regional online communities (40,000+ users) and developing performance-enhancing software. Seeking to combine practical systems knowledge with research in user-centric computing and distributed systems. Proficient in C#, Python, and cross-cultural leadership, with a proven ability to operate independently in complex, remote environments.</p>
+
+        <!-- ===== EDUCATION ===== -->
+        <h1>Education</h1>
+        <ul>
+            <li><strong>B.Sc. in Computer Engineering</strong>, UCHNA, Tabriz, Iran <span class="date">2023 – Present</span></li>
+            <ul class="indent">
+                <li>
+                    <strong>Current GPA:</strong>
+                    <div class="gpa-container">
+                        <span class="gpa-badge">17.5/20</span>
+                        <span class="gpa-label">(Persian system — Range: 17.0 – 18.8/20)</span>
+                        <span class="gpa-badge-international">3.75/4.0</span>
+                        <span class="gpa-label">(International system — Approx. equivalent)</span>
+                    </div>
+                </li>
+                <li><strong>Relevant Coursework:</strong> Data Structures, Algorithms, Operating Systems, Computer Networks, Software Engineering, Database Management Systems.</li>
+            </ul>
+            <li><strong>High School Diploma</strong>, Mobin High School, Tabriz, Iran <span class="date">Graduated: 2023</span></li>
+        </ul>
+
+        <!-- ===== RESEARCH INTERESTS ===== -->
+        <h1>Research Interests</h1>
+        <ul>
+            <li>Human-Computer Interaction (HCI)</li>
+            <li>Community-Driven Systems &amp; Social Computing</li>
+            <li>Network Optimization &amp; Distributed Systems</li>
+            <li>Performance Engineering &amp; System-Level Optimization</li>
+        </ul>
+
+        <!-- ===== PUBLICATIONS ===== -->
+        <h1>Publications</h1>
+        <ul>
+            <li><em>[In progress – currently working on a hardware and computer circuits related article with Dr. Keykhosravi, details to follow upon completion]</em></li>
+        </ul>
+
+        <!-- ===== POSTERS & PRESENTATIONS ===== -->
+        <h1>Posters &amp; Presentations</h1>
+        <ul>
+            <li><strong>Centric AI (Full Presentation):</strong> Delivered a comprehensive presentation in English on Centric AI, based on an external research article, demonstrating ability to synthesize and communicate complex technical concepts to a diverse audience.</li>
+        </ul>
+
+        <!-- ===== HONORS & AWARDS ===== -->
+        <h1>Honors &amp; Awards</h1>
+        <ul>
+            <li><strong>2024:</strong> IELTS Academic Score 7.5/9.0 (C1) – IDP Education</li>
+            <li><strong>2019:</strong> TOEFL iBT Score 109/120 – Chitsazan Language Institute</li>
+            <li><strong>2020:</strong> C# Programming Certification (Windows &amp; Android Development) – MFT</li>
+            <li><strong>2020:</strong> ICDL Certified – International Computer Driving License</li>
+        </ul>
+
+        <!-- ===== SKILLS ===== -->
+        <h1>Skills</h1>
+
+        <h2>Technical Skills</h2>
+        <ul>
+            <li><strong>Programming Languages:</strong> C# (Proficient), Python (Proficient), HTML, CSS, JavaScript (Intermediate)</li>
+            <li><strong>Development Tools &amp; Frameworks:</strong> .NET Framework, Windows API, Git, Visual Studio</li>
+            <li><strong>Research-Relevant Skills:</strong> Data Analysis, Performance Benchmarking, System Profiling, User Experience (UX) Research Basics</li>
+            <li><strong>Other:</strong> Windows System Optimization, Real-time Monitoring, Process Priority Management</li>
+        </ul>
+
+        <h2>Soft Skills</h2>
+        <ul>
+            <li><strong>Community Management:</strong> Leading 40,000+ players across 4 international server regions (Istanbul, Dubai, Bahrain, Frankfurt), managing 1,000+ player inquiries and support tickets</li>
+            <li><strong>Communication:</strong> Fluent in Persian (Native), Turkish (Native), Azeri (Native), English (IELTS 7.5, TOEFL 109)</li>
+            <li><strong>Cross-Cultural Leadership:</strong> Bridging global teams with Persian player base, translating technical updates, gathering localized feedback</li>
+            <li><strong>Remote Coordination:</strong> Operating independently in a country with no official Riot Games server, creative problem-solving</li>
+            <li><strong>Documentation:</strong> Clear and comprehensive reports, technical writing</li>
+            <li><strong>Negotiation:</strong> Secured performance-based compensation structure with Riot Games</li>
+        </ul>
+
+        <!-- ===== WORK EXPERIENCE ===== -->
+        <h1>Work Experience</h1>
+
+        <h3>Community Manager (Remote, Persian-Speaking Region) @ Riot Games</h3>
+        <p class="date">2025 – Present</p>
+        <ul>
+            <li>Lead community engagement for <strong>40,000+ Persian-speaking VALORANT players</strong> across Iran, Turkey, and the global diaspora, coordinating across four international server regions (Istanbul, Dubai, Bahrain, Frankfurt) to ensure optimal player experience.</li>
+            <li>Negotiated a <strong>performance-based compensation structure</strong> with Riot Games, demonstrating deep commitment to the community and the game while operating in a country with no official Riot Games server.</li>
+            <li>Managed <strong>1,000+ player inquiries and support tickets</strong> across all regions since 2025, serving as the primary bridge between Riot's global team and the Persian player base.</li>
+            <li>Translate <strong>technical updates and patch notes</strong> for Persian-speaking players while gathering localized feedback to improve player experience and community satisfaction.</li>
+        </ul>
+
+        <h3>Exoptimizer – Windows Gaming Optimization Tool (Personal Research-Engineering Project)</h3>
+        <p class="date">2025 – Present</p>
+        <ul>
+            <li>Developed a <strong>Windows gaming optimization tool</strong> using C# and .NET to boost system performance and reduce latency, implementing real-time monitoring and process priority management.</li>
+            <li>Achieved measurable performance improvements: <span class="metric-highlight">~10% reduction in system latency</span>, <span class="metric-highlight">10–20% improvement in FPS</span> (with higher gains on Windows 10 vs. Windows 11), and <span class="metric-highlight">up to 17% reduction in system resource usage</span> on non-restricted systems.</li>
+            <li>Conducted <strong>performance benchmarking</strong> to validate the tool's effectiveness, demonstrating proficiency in system-level programming and optimization techniques.</li>
+            <li>Designed a <strong>streamlined, user-friendly UI</strong>, integrating feedback from beta testers to improve usability and functionality.</li>
+        </ul>
+
+        <h3>Intern (Unfinished) @ Deputy of Health, Tabriz University of Medical Sciences</h3>
+        <p class="date">Summer 2024 – Winter 2024</p>
+        <ul>
+            <li>Contributed to the development of a <strong>province-wide synchronized hospital management system</strong>, designed to unify and streamline healthcare data across the region.</li>
+            <li>Collaborated with a team of student developers and university staff to support system architecture planning and initial implementation phases.</li>
+            <li>Gained practical experience in large-scale system design, team coordination, and healthcare IT infrastructure; project remained unfinished due to limited programmer availability as team members were students with conflicting schedules.</li>
+        </ul>
+
+        <!-- ===== COURSES & CERTIFICATES ===== -->
+        <h1>Courses &amp; Certificates</h1>
+        <ul>
+            <li><strong>TOEFL iBT</strong> (Score: 109/120) — Chitsazan Language Institute, 2019</li>
+            <li><strong>IELTS Academic</strong> (Score: 7.5/9.0, C1) — IDP Education, 2024</li>
+            <li><strong>C# Programming</strong> (Windows &amp; Android Development) — MFT, 2020</li>
+            <li><strong>ICDL Certification</strong> — International Computer Driving License, 2020</li>
+        </ul>
+
+        <!-- ===== REFERENCES ===== -->
+        <h1>References</h1>
+        <p><strong>Academic References (Available upon request):</strong></p>
+        <ul>
+            <li><strong>Dr. Khosroshahi</strong> — Professor, UCHNA, Tabriz, Iran</li>
+            <li><strong>Dr. Keykhosravi</strong> — Professor, UCHNA, Tabriz, Iran</li>
+            <li><strong>Dr. Forghani</strong> — Professor, UCHNA, Tabriz, Iran</li>
+            <li><strong>Dr. Badihiyeh Agdam</strong> — Professor, UCHNA, Tabriz, Iran</li>
+        </ul>
+        <p style="color: var(--on-surface-variant); font-style: italic; font-size: 0.9rem;">Note: Professional references are not available for applications and public inquiries.</p>
+
+        <!-- ===== PRINT BUTTON ===== -->
+        <div style="margin-top: var(--spacing-xl); padding-top: var(--spacing-lg); border-top: 1px solid var(--glass-border-soft); text-align: center;" class="no-print">
+            <button onclick="window.print()" class="print-btn">
+                <span class="material-symbols-rounded" style="font-size: 1.2rem;">print</span>
+                Print / Download as PDF
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        // ---- Hide loader once page is fully loaded ----
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+        });
+
+        // ---- Theme Toggle (mirrors main site) ----
+        const body = document.body;
+        const themeToggleBtn = document.getElementById('theme-toggle-btn');
+        const themeIcon = document.getElementById('theme-icon');
+
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark.matches)) {
+            body.classList.remove('light-theme');
+            body.classList.add('dark-theme');
+            themeIcon.textContent = 'light_mode';
+        } else {
+            body.classList.add('light-theme');
+            themeIcon.textContent = 'dark_mode';
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (body.classList.contains('light-theme')) {
+                body.classList.remove('light-theme');
+                body.classList.add('dark-theme');
+                themeIcon.textContent = 'light_mode';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-theme');
+                body.classList.add('light-theme');
+                themeIcon.textContent = 'dark_mode';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        console.log('✅ CV loaded with theme support!');
+    </script>
+
+</body>
+</html>

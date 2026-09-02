@@ -317,17 +317,19 @@ mobileNavLinks.forEach(link => {
 });
 
 // ============================================================
-//  SMOOTH SCROLLING
+//  SMOOTH SCROLLING — FIXED FOR CV LINK
 // ============================================================
-navLinks.forEach(link => {
-    link.addEventListener('click', smoothScroll);
-});
-
-mobileNavLinks.forEach(link => {
-    link.addEventListener('click', smoothScroll);
-});
+function isExternalLink(element) {
+    const href = element.getAttribute('href');
+    return href && (href.startsWith('http') || href === 'cv.html' || href.startsWith('cv.html') || href === 'cv.html#');
+}
 
 function smoothScroll(e) {
+    // If the link is external (CV page), let it behave normally
+    if (isExternalLink(this)) {
+        return;
+    }
+
     e.preventDefault();
     const targetId = this.getAttribute('href');
     const targetElement = document.querySelector(targetId);
@@ -342,6 +344,19 @@ function smoothScroll(e) {
         });
     }
 }
+
+// Apply smooth scroll only to internal links
+navLinks.forEach(link => {
+    if (!isExternalLink(link)) {
+        link.addEventListener('click', smoothScroll);
+    }
+});
+
+mobileNavLinks.forEach(link => {
+    if (!isExternalLink(link)) {
+        link.addEventListener('click', smoothScroll);
+    }
+});
 
 // ============================================================
 //  INTERSECTION OBSERVER
