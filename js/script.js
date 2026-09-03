@@ -251,19 +251,11 @@ if (savedTheme === 'dark' || (!savedTheme && prefersDarkScheme.matches)) {
 }
 
 themeToggleBtn.addEventListener('click', () => {
-    pageTransition.style.transform = 'translateY(0)';
-
-    setTimeout(() => {
-        if (body.classList.contains('light-theme')) {
-            setDarkTheme();
-        } else {
-            setLightTheme();
-        }
-
-        setTimeout(() => {
-            pageTransition.style.transform = 'translateY(-100%)';
-        }, 300);
-    }, 300);
+    if (body.classList.contains('light-theme')) {
+        setDarkTheme();
+    } else {
+        setLightTheme();
+    }
 });
 
 function setDarkTheme() {

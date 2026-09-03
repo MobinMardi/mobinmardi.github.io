@@ -319,7 +319,7 @@ a {
   transition: color var(--transition-fast);
 }
 
-a:hover { color: var(--secondary); }
+a:not(.btn):hover { color: var(--secondary); }
 
 a:focus-visible,
 button:focus-visible {
