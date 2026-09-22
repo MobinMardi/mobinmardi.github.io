@@ -73,6 +73,11 @@
             <li><a href="#certifications" class="mobile-nav-link" style="--i:5">Certifications</a></li>
             <li><a href="#contact" class="mobile-nav-link" style="--i:6">Contact</a></li>
             <li><a href="cv.html" class="mobile-nav-link" id="cv-mobile-link" style="--i:7; color: var(--primary); font-weight: 600;">CV</a></li>
+            <li>
+                <button type="button" class="mobile-nav-link repos-btn" id="repos-btn" style="--i:8;">
+                    Repositories
+                </button>
+            </li>
         </ul>
     </div>
 
@@ -350,6 +355,30 @@
     <button id="back-to-top" class="btn secondary-btn" aria-label="Back to top" style="position: fixed; bottom: 2rem; right: 2rem; z-index: 999; opacity: 0; visibility: hidden; transition: all 0.3s ease; padding: 0.75rem; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; box-shadow: var(--glass-shadow-hover);">
         <span class="material-symbols-rounded" style="font-size: 1.5rem;">arrow_upward</span>
     </button>
+
+    <!-- ===== REPOSITORIES MODAL ===== -->
+    <div class="repos-overlay" id="repos-overlay" aria-hidden="true">
+        <div class="repos-modal glass" role="dialog" aria-modal="true" aria-labelledby="repos-title">
+            <div class="repos-header">
+                <h3 id="repos-title">GitHub Repositories</h3>
+                <button class="repos-close" id="repos-close" aria-label="Close repositories">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
+            </div>
+            <div class="repos-body" id="repos-body">
+                <div class="repos-loading">
+                    <div class="repos-spinner"></div>
+                    <p>Loading repositories…</p>
+                </div>
+            </div>
+            <div class="repos-footer">
+                <a href="https://github.com/MobinMardi?tab=repositories" target="_blank" rel="noopener" class="btn primary-btn repos-view-all">
+                    <span class="material-symbols-rounded" style="font-size:1.1rem;margin-right:6px;">open_in_new</span>
+                    View all on GitHub
+                </a>
+            </div>
+        </div>
+    </div>
 
     <script src="js/script.js"></script>
 </body>

@@ -1025,3 +1025,239 @@ body:not(.loaded) * {
 /* Guard against any element forcing horizontal scroll */
 html, body { max-width: 100%; }
 img, svg, video { max-width: 100%; height: auto; }
+
+/* ============================================================
+   REPOSITORIES BUTTON (mobile menu)
+   ============================================================ */
+.repos-btn {
+  color: var(--primary);
+  font-weight: 600;
+  font-size: var(--font-size-xl);
+  padding: 0;
+  background: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  transition: color var(--transition-normal);
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.mobile-menu.active .repos-btn {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease calc(var(--i, 0) * 0.06s), transform 0.5s ease calc(var(--i, 0) * 0.06s);
+}
+
+.repos-btn:hover { color: var(--secondary); }
+
+/* ============================================================
+   REPOSITORIES MODAL
+   ============================================================ */
+.repos-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(0.75rem, 3vw, 1.5rem);
+  background: rgba(var(--bg-base-rgb), 0.55);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-glass), visibility var(--transition-glass);
+}
+
+.repos-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.repos-modal {
+  width: 100%;
+  max-width: 640px;
+  max-height: min(80dvh, 720px);
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-xl);
+  transform: translateY(24px) scale(0.97);
+  transition: transform var(--transition-glass);
+}
+
+.repos-overlay.active .repos-modal {
+  transform: translateY(0) scale(1);
+}
+
+.repos-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--glass-border-soft);
+  position: relative;
+  z-index: 2;
+}
+
+.repos-header h3 {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  color: var(--primary);
+}
+
+.repos-close {
+  background: rgba(var(--on-surface-rgb), 0.06);
+  border: 1px solid var(--glass-border-soft);
+  color: var(--on-surface);
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.repos-close:hover {
+  background: rgba(var(--primary-rgb), 0.2);
+  transform: scale(1.08) rotate(90deg);
+}
+
+.repos-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: var(--spacing-md) 0;
+  position: relative;
+  z-index: 2;
+  overscroll-behavior: contain;
+}
+
+.repos-body::-webkit-scrollbar { width: 8px; }
+.repos-body::-webkit-scrollbar-thumb {
+  background: rgba(var(--primary-rgb), 0.3);
+  border-radius: var(--radius-full);
+}
+
+.repos-loading,
+.repos-empty,
+.repos-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-2xl) var(--spacing-md);
+  text-align: center;
+  color: var(--on-surface-variant);
+}
+
+.repos-spinner {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 3px solid var(--glass-border-soft);
+  border-top-color: var(--primary);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Repo card — reuses your card look */
+.repo-item {
+  display: block;
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+  border-radius: var(--radius-md);
+  background: rgba(var(--on-surface-rgb), 0.05);
+  border: 1px solid var(--glass-border-soft);
+  transition: all var(--transition-glass);
+  color: var(--on-surface);
+}
+
+.repo-item:last-child { margin-bottom: 0; }
+
+.repo-item:hover {
+  background: rgba(var(--primary-rgb), 0.16);
+  color: var(--on-primary-container);
+  transform: translateX(6px);
+  box-shadow: var(--glass-shadow-hover);
+}
+
+.repo-item-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  margin-bottom: 0.35rem;
+}
+
+.repo-name {
+  font-weight: 600;
+  font-size: var(--font-size-md);
+  color: var(--primary);
+  word-break: break-word;
+}
+
+.repo-item:hover .repo-name { color: var(--on-primary-container); }
+
+.repo-visibility {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.15rem 0.6rem;
+  border-radius: var(--radius-full);
+  background: rgba(var(--primary-rgb), 0.14);
+  border: 1px solid var(--glass-border-soft);
+  flex-shrink: 0;
+}
+
+.repo-desc {
+  font-size: var(--font-size-sm);
+  color: var(--on-surface-variant);
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.repo-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  font-size: var(--font-size-xs);
+  color: var(--on-surface-variant);
+}
+
+.repo-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.repo-lang-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--primary);
+  display: inline-block;
+}
+
+.repos-footer {
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--glass-border-soft);
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.repos-view-all { width: 100%; max-width: 320px; }
+
+@media (max-width: 420px) {
+  .repos-modal { padding: var(--spacing-lg); border-radius: var(--radius-lg); }
+  .repos-footer .repos-view-all { max-width: 100%; }
+}

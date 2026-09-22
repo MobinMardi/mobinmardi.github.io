@@ -403,3 +403,153 @@ buttons.forEach(button => {
 if (profileImg) {
     profileImg.src = profileImg.src || 'img/Profile.png';
 }
+
+// ============================================================
+//  GITHUB REPOSITORIES MODAL (mobile hamburger only)
+// ============================================================
+const GITHUB_USERNAME = 'MobinMardi';
+
+const reposBtn     = document.getElementById('repos-btn');
+const reposOverlay = document.getElementById('repos-overlay');
+const reposClose   = document.getElementById('repos-close');
+const reposBody    = document.getElementById('repos-body');
+
+let reposLoaded = false;
+
+// Language -> dot color (fallback to theme primary)
+const LANG_COLORS = {
+    JavaScript: '#f1e05a', TypeScript: '#3178c6', Python: '#3572A5',
+    'C#': '#178600', 'C++': '#f34b7d', C: '#555555', HTML: '#e34c26',
+    CSS: '#563d7c', Java: '#b07219', Shell: '#89e051', Go: '#00ADD8',
+    Rust: '#dea584', PHP: '#4F5D95', Ruby: '#701516', Swift: '#F05138',
+    Kotlin: '#A97BFF', Dart: '#00B4AB', Lua: '#000080', Vue: '#41b883',
+    SCSS: '#c6538c', PowerShell: '#012456'
+};
+
+function openReposModal() {
+    reposOverlay.classList.add('active');
+    reposOverlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    if (!reposLoaded) {
+        fetchRepositories();
+    }
+}
+
+function closeReposModal() {
+    reposOverlay.classList.remove('active');
+    reposOverlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+}
+
+async function fetchRepositories() {
+    reposBody.innerHTML = `
+        <div class="repos-loading">
+            <div class="repos-spinner"></div>
+            <p>Loading repositories…</p>
+        </div>`;
+
+    try {
+        const res = await fetch(
+            `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`,
+            { headers: { 'Accept': 'application/vnd.github+json' } }
+        );
+
+        if (!res.ok) {
+            if (res.status === 403 || res.status === 429) {
+                throw new Error('GitHub API rate limit reached. Please try again later.');
+            }
+            throw new Error(`GitHub API error (${res.status})`);
+        }
+
+        let repos = await res.json();
+
+        // Filter out forks, show newest first (API already sorts by updated)
+        repos = repos.filter(r => !r.fork);
+
+        if (!repos.length) {
+            reposBody.innerHTML = `
+                <div class="repos-empty">
+                    <span class="material-symbols-rounded" style="font-size:2.5rem;opacity:0.6;">folder_open</span>
+                    <p>No public repositories found.</p>
+                </div>`;
+            reposLoaded = true;
+            return;
+        }
+
+        reposBody.innerHTML = repos.map(repo => {
+            const lang = repo.language || 'Unknown';
+            const dot  = LANG_COLORS[lang] || 'var(--primary)';
+            const desc = repo.description
+                ? repo.description.replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                : '<em style="opacity:0.6;">No description</em>';
+
+            const updated = new Date(repo.updated_at).toLocaleDateString('en-US', {
+                year: 'numeric', month: 'short', day: 'numeric'
+            });
+
+            return `
+                <a class="repo-item" href="${repo.html_url}" target="_blank" rel="noopener">
+                    <div class="repo-item-top">
+                        <span class="repo-name">${repo.name}</span>
+                        ${repo.private ? '<span class="repo-visibility">Private</span>' : ''}
+                    </div>
+                    <p class="repo-desc">${desc}</p>
+                    <div class="repo-meta">
+                        <span><span class="repo-lang-dot" style="background:${dot};"></span>${lang}</span>
+                        <span><span class="material-symbols-rounded" style="font-size:0.95rem;">star</span>${repo.stargazers_count}</span>
+                        <span><span class="material-symbols-rounded" style="font-size:0.95rem;">fork_right</span>${repo.forks_count}</span>
+                        <span><span class="material-symbols-rounded" style="font-size:0.95rem;">schedule</span>${updated}</span>
+                    </div>
+                </a>`;
+        }).join('');
+
+        reposLoaded = true;
+
+    } catch (err) {
+        console.error('Failed to load repositories:', err);
+        reposBody.innerHTML = `
+            <div class="repos-error">
+                <span class="material-symbols-rounded" style="font-size:2.5rem;opacity:0.6;">error</span>
+                <p>${err.message}</p>
+                <button class="btn secondary-btn" id="repos-retry">Retry</button>
+            </div>`;
+        const retry = document.getElementById('repos-retry');
+        if (retry) {
+            retry.addEventListener('click', () => {
+                reposLoaded = false;
+                fetchRepositories();
+            });
+        }
+    }
+}
+
+if (reposBtn) {
+    reposBtn.addEventListener('click', () => {
+        // Close the hamburger menu first, then open modal
+        if (mobileMenuBtn) mobileMenuBtn.classList.remove('active');
+        if (mobileMenu)    mobileMenu.classList.remove('active');
+        const bars = mobileMenuBtn ? mobileMenuBtn.querySelectorAll('.bar') : [];
+        bars.forEach(b => {
+            b.style.transform = 'rotate(0) translate(0)';
+            b.style.opacity = '1';
+        });
+        openReposModal();
+    });
+}
+
+if (reposClose) {
+    reposClose.addEventListener('click', closeReposModal);
+}
+
+if (reposOverlay) {
+    reposOverlay.addEventListener('click', (e) => {
+        if (e.target === reposOverlay) closeReposModal();
+    });
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && reposOverlay && reposOverlay.classList.contains('active')) {
+        closeReposModal();
+    }
+});
