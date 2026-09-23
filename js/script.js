@@ -464,8 +464,28 @@ async function fetchRepositories() {
 
         let repos = await res.json();
 
-        // Filter out forks, show newest first (API already sorts by updated)
-        repos = repos.filter(r => !r.fork);
+        // Show newest first (API already sorts by updated).
+        // Forked repos are kept — they're shown with a "Contributed" badge below.
+
+        // The repos-list endpoint often reports `language: null` for forks (and
+        // occasionally for fresh repos) even when GitHub has detected languages —
+        // it just doesn't backfill that summary field for them. Fall back to each
+        // repo's dedicated languages endpoint (picking the language with the most
+        // bytes) only for the repos that actually need it.
+        await Promise.all(repos.map(async (repo) => {
+            if (repo.language || !repo.languages_url) return;
+            try {
+                const langRes = await fetch(repo.languages_url, {
+                    headers: { 'Accept': 'application/vnd.github+json' }
+                });
+                if (!langRes.ok) return;
+                const langData = await langRes.json(); // { TypeScript: 1234, JS: 56, ... }
+                const top = Object.entries(langData).sort((a, b) => b[1] - a[1])[0];
+                if (top) repo.language = top[0];
+            } catch {
+                // Leave as Unknown — not worth failing the whole list over this.
+            }
+        }));
 
         if (!repos.length) {
             reposBody.innerHTML = `
@@ -492,7 +512,10 @@ async function fetchRepositories() {
                 <a class="repo-item" href="${repo.html_url}" target="_blank" rel="noopener">
                     <div class="repo-item-top">
                         <span class="repo-name">${repo.name}</span>
-                        ${repo.private ? '<span class="repo-visibility">Private</span>' : ''}
+                        <span class="repo-badges">
+                            ${repo.fork ? '<span class="repo-badge repo-fork-badge"><span class="material-symbols-rounded" style="font-size:0.85rem;">fork_right</span>Contributed</span>' : ''}
+                            ${repo.private ? '<span class="repo-badge repo-visibility">Private</span>' : ''}
+                        </span>
                     </div>
                     <p class="repo-desc">${desc}</p>
                     <div class="repo-meta">
