@@ -497,7 +497,7 @@ async function fetchRepositories() {
             return;
         }
 
-        reposBody.innerHTML = repos.map(repo => {
+        reposBody.innerHTML = repos.map((repo, i) => {
             const lang = repo.language || 'Unknown';
             const dot  = LANG_COLORS[lang] || 'var(--primary)';
             const desc = repo.description
@@ -509,7 +509,7 @@ async function fetchRepositories() {
             });
 
             return `
-                <a class="repo-item" href="${repo.html_url}" target="_blank" rel="noopener">
+                <a class="repo-item is-entering" style="--i:${i};" href="${repo.html_url}" target="_blank" rel="noopener">
                     <div class="repo-item-top">
                         <span class="repo-name">${repo.name}</span>
                         <span class="repo-badges">
@@ -526,6 +526,15 @@ async function fetchRepositories() {
                     </div>
                 </a>`;
         }).join('');
+
+        // Each card fades/slides in with a delay based on its position (--i),
+        // the same ordered, staggered reveal used by the hamburger menu links.
+        // Drop the "is-entering" class once the animation finishes so the
+        // normal hover/press rules take full control afterwards, instead of
+        // fighting with the entrance animation forever.
+        reposBody.querySelectorAll('.repo-item.is-entering').forEach(el => {
+            el.addEventListener('animationend', () => el.classList.remove('is-entering'), { once: true });
+        });
 
         reposLoaded = true;
 
